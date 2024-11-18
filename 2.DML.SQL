@@ -57,6 +57,11 @@ select a.name, a.email from author a ;
 select * from author where password is null;
 select * from author where password is not null;
 
+-- order by와 where의 차이
+select * from customer order by customer_phone_num is null;
+-- 끊어서 해석하면 customer중에서 찾아라, customer_phone_num가 null이 아닌 애들부터 오름차순으로 정리해라
+select * from customer where customer_phone_num is null;
+
 -- 프로그래머스 sql 문제풀이
 -- 여러 기준으로정렬하기
 -- 상위 n개 레코드
