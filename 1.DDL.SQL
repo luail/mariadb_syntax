@@ -62,3 +62,10 @@ alter table post modify column contents VARCHAR(3000);
 -- 테이블 삭제
 show create table post;
 drop table post;
+
+
+
+
+
+
+
