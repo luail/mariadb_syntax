@@ -22,7 +22,7 @@ BEGIN
     insert into post(title, contents, author_id) values('java', 'java is...', 1);
     commit;
 END //
-DELEMITER ;
+DELIMITER ;
 
 -- 프로시저 호출
 CALL 트랜잭션테스트();
