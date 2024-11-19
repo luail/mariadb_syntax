@@ -55,3 +55,35 @@ select * from author where id in(2,3,4);
 -- select * from author where id in(select author_id from post); 로도 활용가능
 -- 글을 한번이라도 쓴 사람들만 조회해라
 select * from author where id not in (1,5);  --전체데이터가 1~5까지 밖에 없다는 가정.
+
+-- like*** : 특정 문자를 포함하는 데이터를 조회하기 위해 사용하는 키워드
+select * from post where title like '%h'; --h로 끝나는 타이틀 검색.
+select * from post where title like 'h%'; --h로 시작하는 타이틀 검색.
+select * from post where title like '%h%'; --h가 포함되어있는 타이틀 검색.
+
+-- regexp : 정규표현식을 활용한 조회
+-- not regexp도 활용 가능.
+select * from post where title regexp '[a-z]'; --하나라도 알파벳 소문자가 들어있으면
+select * from post where title regexp '[가-힣]'; --하나라도 한글이 포함되어 있으면.
+
+-- 날짜변환 cast, convert : 숫자->날짜, 문자->날짜
+select cast(20241119 as date);
+select convert(20241119, date);
+select cast('20241119' as date);
+select convert('20241119', date);
+-- 문자->숫자 변환
+select cast('12' as unsigned);
+select convert('12', unsigned);
+
+-- 날짜 조회 방법
+-- like패턴, 부등호 활용, date_format
+select * from post where created_time like '2024-11%'; --문자열처럼 조회
+select * from post where created_time >= '2024-01-01' and created_time < '2025-01-01'; 
+--date_format활용
+select date_format(created_time, '%Y-%m-%d') from post; --연월일만 뽑아서 조회
+select date_format(created_time, '%H:%i:%s') from post; --시분초만 뽑아서 조회
+select * from post where date_format(created_time, '%Y')='2024';
+select * from post where cast(date_format(created_time, '%Y')='2024' as unsigned) = 2024;
+
+-- 오늘 날짜 및 시간.
+select now();
